@@ -1,0 +1,767 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		130000000000000000000001 /* AwakeDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000001 /* AwakeDuration.swift */; };
+		130000000000000000000002 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000002 /* TimerStatus.swift */; };
+		130000000000000000000003 /* RemainingTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000003 /* RemainingTimeFormatter.swift */; };
+		130000000000000000000004 /* MacAwakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000007 /* MacAwakeApp.swift */; };
+		130000000000000000000005 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000006 /* MenuBarController.swift */; };
+		130000000000000000000006 /* AwakeTimerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000005 /* AwakeTimerStore.swift */; };
+		130000000000000000000007 /* SleepControlClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000004 /* SleepControlClient.swift */; };
+		130000000000000000000008 /* HelperMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000008 /* HelperMain.swift */; };
+		130000000000000000000009 /* AwakeDurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000009 /* AwakeDurationTests.swift */; };
+		13000000000000000000000A /* RemainingTimeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000A /* RemainingTimeFormatterTests.swift */; };
+		13000000000000000000000B /* MacAwakeHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000B /* MacAwakeHelperTests.swift */; };
+		130000000000000000000012 /* SleepControlClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000004 /* SleepControlClient.swift */; };
+		130000000000000000000013 /* AwakeTimerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000005 /* AwakeTimerStore.swift */; };
+		130000000000000000000014 /* AwakeTimerStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000D /* AwakeTimerStoreTests.swift */; };
+		130000000000000000000015 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000E /* SessionState.swift */; };
+		130000000000000000000016 /* SessionStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000F /* SessionStateStore.swift */; };
+		130000000000000000000017 /* SleepControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000010 /* SleepControlService.swift */; };
+		130000000000000000000018 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000E /* SessionState.swift */; };
+		130000000000000000000019 /* SessionStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000F /* SessionStateStore.swift */; };
+		13000000000000000000001A /* SleepControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000010 /* SleepControlService.swift */; };
+		13000000000000000000001B /* SessionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000011 /* SessionStateTests.swift */; };
+		13000000000000000000001C /* PMSetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000012 /* PMSetClient.swift */; };
+		13000000000000000000001D /* PMSetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000012 /* PMSetClient.swift */; };
+		13000000000000000000001E /* PMSetClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000013 /* PMSetClientTests.swift */; };
+		13000000000000000000001F /* SleepControlXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000014 /* SleepControlXPC.swift */; };
+		130000000000000000000020 /* SleepControlXPCService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000016 /* SleepControlXPCService.swift */; };
+		130000000000000000000021 /* SleepControlXPCService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000016 /* SleepControlXPCService.swift */; };
+		130000000000000000000022 /* SleepControlClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000015 /* SleepControlClientTests.swift */; };
+		130000000000000000000023 /* SleepControlXPCServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000017 /* SleepControlXPCServiceTests.swift */; };
+		130000000000000000000024 /* SleepControlClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000004 /* SleepControlClient.swift */; };
+		130000000000000000000025 /* SleepControlIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000018 /* SleepControlIntegrationTests.swift */; };
+		13000000000000000000000C /* libMacAwakeCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110000000000000000000001 /* libMacAwakeCore.a */; };
+		13000000000000000000000D /* libMacAwakeCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110000000000000000000001 /* libMacAwakeCore.a */; };
+		13000000000000000000000E /* libMacAwakeCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110000000000000000000001 /* libMacAwakeCore.a */; };
+		13000000000000000000000F /* libMacAwakeCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110000000000000000000001 /* libMacAwakeCore.a */; };
+		130000000000000000000010 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000C /* XCTest.framework */; };
+		130000000000000000000011 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12000000000000000000000C /* XCTest.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		150000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000000000001;
+			remoteInfo = MacAwakeCore;
+		};
+		150000000000000000000002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000000000001;
+			remoteInfo = MacAwakeCore;
+		};
+		150000000000000000000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000000000001;
+			remoteInfo = MacAwakeCore;
+		};
+		150000000000000000000004 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000000000001;
+			remoteInfo = MacAwakeCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		110000000000000000000001 /* libMacAwakeCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMacAwakeCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		110000000000000000000002 /* MacAwake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAwake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		110000000000000000000003 /* MacAwakeHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacAwakeHelper; sourceTree = BUILT_PRODUCTS_DIR; };
+		110000000000000000000004 /* MacAwakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacAwakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		110000000000000000000005 /* MacAwakeHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacAwakeHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		120000000000000000000001 /* AwakeDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeDuration.swift; sourceTree = "<group>"; };
+		120000000000000000000002 /* TimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatus.swift; sourceTree = "<group>"; };
+		120000000000000000000003 /* RemainingTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeFormatter.swift; sourceTree = "<group>"; };
+		120000000000000000000004 /* SleepControlClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlClient.swift; sourceTree = "<group>"; };
+		120000000000000000000005 /* AwakeTimerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeTimerStore.swift; sourceTree = "<group>"; };
+		120000000000000000000006 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		120000000000000000000007 /* MacAwakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAwakeApp.swift; sourceTree = "<group>"; };
+		120000000000000000000008 /* HelperMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperMain.swift; sourceTree = "<group>"; };
+		120000000000000000000009 /* AwakeDurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeDurationTests.swift; sourceTree = "<group>"; };
+		12000000000000000000000A /* RemainingTimeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeFormatterTests.swift; sourceTree = "<group>"; };
+		12000000000000000000000B /* MacAwakeHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAwakeHelperTests.swift; sourceTree = "<group>"; };
+		12000000000000000000000D /* AwakeTimerStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeTimerStoreTests.swift; sourceTree = "<group>"; };
+		12000000000000000000000E /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
+		12000000000000000000000F /* SessionStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStateStore.swift; sourceTree = "<group>"; };
+		120000000000000000000010 /* SleepControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlService.swift; sourceTree = "<group>"; };
+		120000000000000000000011 /* SessionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStateTests.swift; sourceTree = "<group>"; };
+		120000000000000000000012 /* PMSetClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSetClient.swift; sourceTree = "<group>"; };
+		120000000000000000000013 /* PMSetClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSetClientTests.swift; sourceTree = "<group>"; };
+		120000000000000000000014 /* SleepControlXPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlXPC.swift; sourceTree = "<group>"; };
+		120000000000000000000015 /* SleepControlClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlClientTests.swift; sourceTree = "<group>"; };
+		120000000000000000000016 /* SleepControlXPCService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlXPCService.swift; sourceTree = "<group>"; };
+		120000000000000000000017 /* SleepControlXPCServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlXPCServiceTests.swift; sourceTree = "<group>"; };
+		120000000000000000000018 /* SleepControlIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlIntegrationTests.swift; sourceTree = "<group>"; };
+		12000000000000000000000C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		140000000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13000000000000000000000C /* libMacAwakeCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		140000000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13000000000000000000000D /* libMacAwakeCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		140000000000000000000007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130000000000000000000010 /* XCTest.framework in Frameworks */,
+				13000000000000000000000E /* libMacAwakeCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		140000000000000000000009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130000000000000000000011 /* XCTest.framework in Frameworks */,
+				13000000000000000000000F /* libMacAwakeCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000004 /* Shared */,
+				000000000000000000000005 /* MacAwake */,
+				000000000000000000000006 /* MacAwakeHelper */,
+				000000000000000000000007 /* MacAwakeTests */,
+				000000000000000000000008 /* MacAwakeHelperTests */,
+				000000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				110000000000000000000001 /* libMacAwakeCore.a */,
+				110000000000000000000002 /* MacAwake.app */,
+				110000000000000000000003 /* MacAwakeHelper */,
+				110000000000000000000004 /* MacAwakeTests.xctest */,
+				110000000000000000000005 /* MacAwakeHelperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		000000000000000000000004 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000001 /* AwakeDuration.swift */,
+				120000000000000000000002 /* TimerStatus.swift */,
+				120000000000000000000003 /* RemainingTimeFormatter.swift */,
+				120000000000000000000014 /* SleepControlXPC.swift */,
+			);
+			path = ../src/Shared;
+			sourceTree = "<group>";
+		};
+		000000000000000000000005 /* MacAwake */ = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000007 /* MacAwakeApp.swift */,
+				120000000000000000000006 /* MenuBarController.swift */,
+				120000000000000000000005 /* AwakeTimerStore.swift */,
+				120000000000000000000004 /* SleepControlClient.swift */,
+			);
+			path = ../src/MacAwake;
+			sourceTree = "<group>";
+		};
+		000000000000000000000006 /* MacAwakeHelper */ = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000008 /* HelperMain.swift */,
+				12000000000000000000000E /* SessionState.swift */,
+				12000000000000000000000F /* SessionStateStore.swift */,
+				120000000000000000000012 /* PMSetClient.swift */,
+				120000000000000000000010 /* SleepControlService.swift */,
+				120000000000000000000016 /* SleepControlXPCService.swift */,
+			);
+			path = ../src/MacAwakeHelper;
+			sourceTree = "<group>";
+		};
+		000000000000000000000007 /* MacAwakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000009 /* AwakeDurationTests.swift */,
+				12000000000000000000000A /* RemainingTimeFormatterTests.swift */,
+				12000000000000000000000D /* AwakeTimerStoreTests.swift */,
+				120000000000000000000015 /* SleepControlClientTests.swift */,
+			);
+			path = ../tests/MacAwakeTests;
+			sourceTree = "<group>";
+		};
+		000000000000000000000008 /* MacAwakeHelperTests */ = {
+			isa = PBXGroup;
+			children = (
+				12000000000000000000000B /* MacAwakeHelperTests.swift */,
+				120000000000000000000011 /* SessionStateTests.swift */,
+				120000000000000000000013 /* PMSetClientTests.swift */,
+				120000000000000000000017 /* SleepControlXPCServiceTests.swift */,
+				120000000000000000000018 /* SleepControlIntegrationTests.swift */,
+			);
+			path = ../tests/MacAwakeHelperTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		100000000000000000000001 /* MacAwakeCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 160000000000000000000002 /* Build configuration list for PBXNativeTarget "MacAwakeCore" */;
+			buildPhases = (
+				140000000000000000000001 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacAwakeCore;
+			productName = MacAwakeCore;
+			productReference = 110000000000000000000001 /* libMacAwakeCore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		100000000000000000000002 /* MacAwake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 160000000000000000000003 /* Build configuration list for PBXNativeTarget "MacAwake" */;
+			buildPhases = (
+				140000000000000000000002 /* Sources */,
+				140000000000000000000003 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				150000000000000000000005 /* PBXTargetDependency */,
+			);
+			name = MacAwake;
+			productName = MacAwake;
+			productReference = 110000000000000000000002 /* MacAwake.app */;
+			productType = "com.apple.product-type.application";
+		};
+		100000000000000000000003 /* MacAwakeHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 160000000000000000000004 /* Build configuration list for PBXNativeTarget "MacAwakeHelper" */;
+			buildPhases = (
+				140000000000000000000004 /* Sources */,
+				140000000000000000000005 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				150000000000000000000006 /* PBXTargetDependency */,
+			);
+			name = MacAwakeHelper;
+			productName = MacAwakeHelper;
+			productReference = 110000000000000000000003 /* MacAwakeHelper */;
+			productType = "com.apple.product-type.tool";
+		};
+		100000000000000000000004 /* MacAwakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 160000000000000000000005 /* Build configuration list for PBXNativeTarget "MacAwakeTests" */;
+			buildPhases = (
+				140000000000000000000006 /* Sources */,
+				140000000000000000000007 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				150000000000000000000007 /* PBXTargetDependency */,
+			);
+			name = MacAwakeTests;
+			productName = MacAwakeTests;
+			productReference = 110000000000000000000004 /* MacAwakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		100000000000000000000005 /* MacAwakeHelperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 160000000000000000000006 /* Build configuration list for PBXNativeTarget "MacAwakeHelperTests" */;
+			buildPhases = (
+				140000000000000000000008 /* Sources */,
+				140000000000000000000009 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				150000000000000000000008 /* PBXTargetDependency */,
+			);
+			name = MacAwakeHelperTests;
+			productName = MacAwakeHelperTests;
+			productReference = 110000000000000000000005 /* MacAwakeHelperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 2605;
+				LastUpgradeCheck = 2605;
+				TargetAttributes = {
+					100000000000000000000001 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					100000000000000000000002 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					100000000000000000000003 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					100000000000000000000004 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 100000000000000000000001;
+					};
+					100000000000000000000005 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 100000000000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = 160000000000000000000001 /* Build configuration list for PBXProject "MacAwake" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 000000000000000000000002;
+			productRefGroup = 000000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				100000000000000000000001 /* MacAwakeCore */,
+				100000000000000000000002 /* MacAwake */,
+				100000000000000000000003 /* MacAwakeHelper */,
+				100000000000000000000004 /* MacAwakeTests */,
+				100000000000000000000005 /* MacAwakeHelperTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		140000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130000000000000000000001 /* AwakeDuration.swift in Sources */,
+				130000000000000000000002 /* TimerStatus.swift in Sources */,
+				130000000000000000000003 /* RemainingTimeFormatter.swift in Sources */,
+				13000000000000000000001F /* SleepControlXPC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		140000000000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130000000000000000000004 /* MacAwakeApp.swift in Sources */,
+				130000000000000000000005 /* MenuBarController.swift in Sources */,
+				130000000000000000000006 /* AwakeTimerStore.swift in Sources */,
+				130000000000000000000007 /* SleepControlClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		140000000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130000000000000000000008 /* HelperMain.swift in Sources */,
+				130000000000000000000015 /* SessionState.swift in Sources */,
+				130000000000000000000016 /* SessionStateStore.swift in Sources */,
+				13000000000000000000001C /* PMSetClient.swift in Sources */,
+				130000000000000000000017 /* SleepControlService.swift in Sources */,
+				130000000000000000000020 /* SleepControlXPCService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		140000000000000000000006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130000000000000000000009 /* AwakeDurationTests.swift in Sources */,
+				13000000000000000000000A /* RemainingTimeFormatterTests.swift in Sources */,
+				130000000000000000000012 /* SleepControlClient.swift in Sources */,
+				130000000000000000000013 /* AwakeTimerStore.swift in Sources */,
+				130000000000000000000014 /* AwakeTimerStoreTests.swift in Sources */,
+				130000000000000000000022 /* SleepControlClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		140000000000000000000008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13000000000000000000000B /* MacAwakeHelperTests.swift in Sources */,
+				130000000000000000000018 /* SessionState.swift in Sources */,
+				130000000000000000000019 /* SessionStateStore.swift in Sources */,
+				13000000000000000000001D /* PMSetClient.swift in Sources */,
+				13000000000000000000001A /* SleepControlService.swift in Sources */,
+				130000000000000000000021 /* SleepControlXPCService.swift in Sources */,
+				130000000000000000000024 /* SleepControlClient.swift in Sources */,
+				13000000000000000000001B /* SessionStateTests.swift in Sources */,
+				13000000000000000000001E /* PMSetClientTests.swift in Sources */,
+				130000000000000000000023 /* SleepControlXPCServiceTests.swift in Sources */,
+				130000000000000000000025 /* SleepControlIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		150000000000000000000005 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 100000000000000000000001 /* MacAwakeCore */; targetProxy = 150000000000000000000001 /* PBXContainerItemProxy */; };
+		150000000000000000000006 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 100000000000000000000001 /* MacAwakeCore */; targetProxy = 150000000000000000000002 /* PBXContainerItemProxy */; };
+		150000000000000000000007 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 100000000000000000000001 /* MacAwakeCore */; targetProxy = 150000000000000000000003 /* PBXContainerItemProxy */; };
+		150000000000000000000008 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 100000000000000000000001 /* MacAwakeCore */; targetProxy = 150000000000000000000004 /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		170000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		170000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		170000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				DEFINES_MODULE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACH_O_TYPE = staticlib;
+				PRODUCT_MODULE_NAME = MacAwakeCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		170000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				DEFINES_MODULE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACH_O_TYPE = staticlib;
+				PRODUCT_MODULE_NAME = MacAwakeCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		170000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mac Awake";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		170000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mac Awake";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		170000000000000000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwakeHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		170000000000000000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwakeHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		170000000000000000000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				DEFINES_MODULE = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "";
+			};
+			name = Debug;
+		};
+		17000000000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				DEFINES_MODULE = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "";
+			};
+			name = Release;
+		};
+		17000000000000000000000B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				DEFINES_MODULE = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwakeHelperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "";
+			};
+			name = Debug;
+		};
+		17000000000000000000000C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				DEFINES_MODULE = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwakeHelperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		160000000000000000000001 /* Build configuration list for PBXProject "MacAwake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				170000000000000000000001 /* Debug */,
+				170000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		160000000000000000000002 /* Build configuration list for PBXNativeTarget "MacAwakeCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				170000000000000000000003 /* Debug */,
+				170000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		160000000000000000000003 /* Build configuration list for PBXNativeTarget "MacAwake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				170000000000000000000005 /* Debug */,
+				170000000000000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		160000000000000000000004 /* Build configuration list for PBXNativeTarget "MacAwakeHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				170000000000000000000007 /* Debug */,
+				170000000000000000000008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		160000000000000000000005 /* Build configuration list for PBXNativeTarget "MacAwakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				170000000000000000000009 /* Debug */,
+				17000000000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		160000000000000000000006 /* Build configuration list for PBXNativeTarget "MacAwakeHelperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17000000000000000000000B /* Debug */,
+				17000000000000000000000C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}
