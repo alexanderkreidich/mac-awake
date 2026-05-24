@@ -3,6 +3,7 @@ import Foundation
 public protocol PMSetClient {
     func readDisableSleepValue() throws -> Int
     func setDisableSleepValue(_ value: Int) throws
+    func sleepNow() throws
 }
 
 public struct PMSetProcessResult: Equatable, Sendable {
@@ -60,6 +61,12 @@ public struct SystemPMSetClient: PMSetClient {
         }
 
         let arguments = ["-a", "disablesleep", String(value)]
+        let result = try processRunner.run(executableURL: executableURL, arguments: arguments)
+        try validate(result: result, arguments: arguments)
+    }
+
+    public func sleepNow() throws {
+        let arguments = ["sleepnow"]
         let result = try processRunner.run(executableURL: executableURL, arguments: arguments)
         try validate(result: result, arguments: arguments)
     }

@@ -26,11 +26,11 @@ public final class HelperSleepControlService: SleepControlService {
         self.pmsetClient = pmsetClient
         self.now = now
 
-        try? recoverExpiredSessionIfNeeded()
+        try? recoverExpiredSessionIfNeeded(requestSleep: true)
     }
 
     public func start(duration: AwakeDuration) throws -> TimerStatus {
-        try recoverExpiredSessionIfNeeded()
+        try recoverExpiredSessionIfNeeded(requestSleep: false)
 
         let currentState = try store.load()
         let startedAt = now()
@@ -88,7 +88,7 @@ public final class HelperSleepControlService: SleepControlService {
 
     public func status() throws -> TimerStatus {
         do {
-            try recoverExpiredSessionIfNeeded()
+            try recoverExpiredSessionIfNeeded(requestSleep: true)
             return try status(for: store.load())
         } catch SessionStateStoreError.corruptedState {
             return .errorVisible(
@@ -97,7 +97,7 @@ public final class HelperSleepControlService: SleepControlService {
         }
     }
 
-    private func recoverExpiredSessionIfNeeded() throws {
+    private func recoverExpiredSessionIfNeeded(requestSleep: Bool) throws {
         let currentState = try store.load()
 
         guard currentState.isExpired(at: now()) else {
@@ -110,6 +110,10 @@ public final class HelperSleepControlService: SleepControlService {
 
         try pmsetClient.setDisableSleepValue(previousValue)
         try store.save(.inactive)
+
+        if requestSleep {
+            try pmsetClient.sleepNow()
+        }
     }
 
     private func status(for state: SessionState) throws -> TimerStatus {

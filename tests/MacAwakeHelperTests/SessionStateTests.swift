@@ -12,6 +12,7 @@ private final class FakePMSetClient: PMSetClient {
     var valuesThatFailOnSet: Set<Int> = []
     private(set) var currentReadCount = 0
     private(set) var setValues: [Int] = []
+    private(set) var sleepNowCount = 0
 
     init(currentValue: Int = 0) {
         self.currentValue = currentValue
@@ -30,6 +31,10 @@ private final class FakePMSetClient: PMSetClient {
         }
 
         currentValue = value
+    }
+
+    func sleepNow() throws {
+        sleepNowCount += 1
     }
 }
 
@@ -139,6 +144,21 @@ final class SessionStateTests: XCTestCase {
         )
 
         XCTAssertEqual(settings.setValues, [0])
+        XCTAssertFalse(try store.load().isActive)
+    }
+
+    func testExpiredSessionStatusRestoresAndRequestsSleep() throws {
+        var now = Date(timeIntervalSince1970: 1_000)
+        let (store, _) = makeStore()
+        let settings = FakePMSetClient(currentValue: 0)
+        let service = HelperSleepControlService(store: store, pmsetClient: settings, now: { now })
+
+        _ = try service.start(duration: .fiveMinutes)
+        now = Date(timeIntervalSince1970: 2_000)
+
+        XCTAssertEqual(try service.status(), .inactive)
+        XCTAssertEqual(settings.setValues, [1, 0])
+        XCTAssertEqual(settings.sleepNowCount, 1)
         XCTAssertFalse(try store.load().isActive)
     }
 
