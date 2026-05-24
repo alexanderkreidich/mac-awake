@@ -85,6 +85,53 @@ final class PMSetClientTests: XCTestCase {
         XCTAssertEqual(try client.readDisableSleepValue(), 1)
     }
 
+    func testIsLidClosedReadsClosedClamshellState() throws {
+        let runner = RecordingPMSetProcessRunner(
+            results: [
+                PMSetProcessResult(
+                    terminationStatus: 0,
+                    standardOutput: "    \"AppleClamshellState\" = Yes\n",
+                    standardError: ""
+                ),
+            ]
+        )
+        let client = SystemPMSetClient(processRunner: runner)
+
+        XCTAssertTrue(try client.isLidClosed())
+        XCTAssertEqual(runner.invocations.map { $0.executableURL.path }, ["/usr/sbin/ioreg"])
+        XCTAssertEqual(runner.invocations.map { $0.arguments }, [["-r", "-n", "IOPMrootDomain", "-d", "1"]])
+    }
+
+    func testIsLidClosedReadsOpenClamshellState() throws {
+        let runner = RecordingPMSetProcessRunner(
+            results: [
+                PMSetProcessResult(
+                    terminationStatus: 0,
+                    standardOutput: "    \"AppleClamshellState\" = No\n",
+                    standardError: ""
+                ),
+            ]
+        )
+        let client = SystemPMSetClient(processRunner: runner)
+
+        XCTAssertFalse(try client.isLidClosed())
+    }
+
+    func testIsLidClosedDefaultsToOpenWhenClamshellStateIsMissing() throws {
+        let runner = RecordingPMSetProcessRunner(
+            results: [
+                PMSetProcessResult(
+                    terminationStatus: 0,
+                    standardOutput: "    \"SleepDisabled\" = No\n",
+                    standardError: ""
+                ),
+            ]
+        )
+        let client = SystemPMSetClient(processRunner: runner)
+
+        XCTAssertFalse(try client.isLidClosed())
+    }
+
     func testSetDisableSleepValueUsesFixedPMSetArguments() throws {
         let runner = RecordingPMSetProcessRunner(
             results: [

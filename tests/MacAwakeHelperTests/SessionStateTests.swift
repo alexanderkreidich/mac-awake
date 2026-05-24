@@ -10,6 +10,7 @@ private enum FakePMSetClientError: Error {
 private final class FakePMSetClient: PMSetClient {
     var currentValue: Int
     var valuesThatFailOnSet: Set<Int> = []
+    var lidClosed = false
     private(set) var currentReadCount = 0
     private(set) var setValues: [Int] = []
     private(set) var sleepNowCount = 0
@@ -31,6 +32,10 @@ private final class FakePMSetClient: PMSetClient {
         }
 
         currentValue = value
+    }
+
+    func isLidClosed() throws -> Bool {
+        lidClosed
     }
 
     func sleepNow() throws {
@@ -147,10 +152,11 @@ final class SessionStateTests: XCTestCase {
         XCTAssertFalse(try store.load().isActive)
     }
 
-    func testExpiredSessionStatusRestoresAndRequestsSleep() throws {
+    func testExpiredSessionStatusRestoresAndRequestsSleepWhenLidClosed() throws {
         var now = Date(timeIntervalSince1970: 1_000)
         let (store, _) = makeStore()
         let settings = FakePMSetClient(currentValue: 0)
+        settings.lidClosed = true
         let service = HelperSleepControlService(store: store, pmsetClient: settings, now: { now })
 
         _ = try service.start(duration: .fiveMinutes)
@@ -159,6 +165,22 @@ final class SessionStateTests: XCTestCase {
         XCTAssertEqual(try service.status(), .inactive)
         XCTAssertEqual(settings.setValues, [1, 0])
         XCTAssertEqual(settings.sleepNowCount, 1)
+        XCTAssertFalse(try store.load().isActive)
+    }
+
+    func testExpiredSessionStatusRestoresWithoutSleepWhenLidOpen() throws {
+        var now = Date(timeIntervalSince1970: 1_000)
+        let (store, _) = makeStore()
+        let settings = FakePMSetClient(currentValue: 0)
+        settings.lidClosed = false
+        let service = HelperSleepControlService(store: store, pmsetClient: settings, now: { now })
+
+        _ = try service.start(duration: .fiveMinutes)
+        now = Date(timeIntervalSince1970: 2_000)
+
+        XCTAssertEqual(try service.status(), .inactive)
+        XCTAssertEqual(settings.setValues, [1, 0])
+        XCTAssertEqual(settings.sleepNowCount, 0)
         XCTAssertFalse(try store.load().isActive)
     }
 
