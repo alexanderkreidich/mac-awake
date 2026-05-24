@@ -13,9 +13,12 @@ PROJECT_PATH="$REPO_DIR/$PROJECT_RELATIVE_PATH"
 DERIVED_DATA_PATH="$REPO_DIR/.build/DerivedData"
 HELPER_SOURCE="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/$HELPER_PRODUCT_NAME"
 APP_PATH="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/MacAwake.app"
+APP_EXECUTABLE="$APP_PATH/Contents/MacOS/MacAwake"
 HELPER_DEST="/Library/PrivilegedHelperTools/$LABEL"
 PLIST_DEST="/Library/LaunchDaemons/$LABEL.plist"
 STATE_DIR="/Library/Application Support/Mac Awake"
+LOGIN_AGENT_LABEL="com.sasha.MacAwake.LoginAgent"
+LOGIN_AGENT_DEST="$HOME/Library/LaunchAgents/$LOGIN_AGENT_LABEL.plist"
 
 if [[ ! -d "$PROJECT_PATH" ]]; then
   echo "error: $PROJECT_RELATIVE_PATH not found relative to repository root" >&2
@@ -59,11 +62,18 @@ if [[ ! -x "$HELPER_SOURCE" ]]; then
   exit 1
 fi
 
+if [[ ! -x "$APP_EXECUTABLE" ]]; then
+  echo "error: app executable not found at $APP_EXECUTABLE" >&2
+  exit 1
+fi
+
 PLIST_TMP="$(mktemp -t "$LABEL.plist.XXXXXX")"
+LOGIN_AGENT_TMP="$(mktemp -t "$LOGIN_AGENT_LABEL.plist.XXXXXX")"
 VERIFY_SOURCE=""
 VERIFY_BINARY=""
 cleanup() {
   rm -f "$PLIST_TMP"
+  rm -f "$LOGIN_AGENT_TMP"
   if [[ -n "$VERIFY_SOURCE" ]]; then
     rm -f "$VERIFY_SOURCE"
   fi
@@ -106,6 +116,27 @@ PLIST
 
 plutil -lint "$PLIST_TMP" >/dev/null
 
+cat >"$LOGIN_AGENT_TMP" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>$LOGIN_AGENT_LABEL</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>$APP_EXECUTABLE</string>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+PLIST
+
+plutil -lint "$LOGIN_AGENT_TMP" >/dev/null
+
 echo "==> Removing any currently loaded development helper"
 sudo /bin/launchctl bootout "system/$LABEL" >/dev/null 2>&1 || true
 sudo /bin/launchctl bootout system "$PLIST_DEST" >/dev/null 2>&1 || true
@@ -133,6 +164,20 @@ else
   echo "not loaded"
   exit 1
 fi
+
+echo "==> Installing login agent"
+/bin/mkdir -p "$HOME/Library/LaunchAgents"
+/bin/launchctl bootout "gui/$UID/$LOGIN_AGENT_LABEL" >/dev/null 2>&1 || true
+/bin/launchctl bootout "gui/$UID" "$LOGIN_AGENT_DEST" >/dev/null 2>&1 || true
+/usr/bin/install -m 0644 "$LOGIN_AGENT_TMP" "$LOGIN_AGENT_DEST"
+if /bin/launchctl bootstrap "gui/$UID" "$LOGIN_AGENT_DEST" >/dev/null 2>&1; then
+  /bin/launchctl enable "gui/$UID/$LOGIN_AGENT_LABEL" >/dev/null 2>&1 || true
+  echo "Login agent: loaded"
+else
+  echo "Login agent: installed; it will load on next login"
+fi
+
+echo "Login plist: $LOGIN_AGENT_DEST"
 
 echo "==> Verifying helper XPC status()"
 VERIFY_SOURCE="$(mktemp -t "$LABEL.verify.XXXXXX.m")"
@@ -212,6 +257,7 @@ fi
 echo
 cat <<'DONE'
 Installation complete. Mac Awake is open and ready in the menu bar.
+It will also open automatically after you sign in.
 
 Try a 5 minute timer first.
 

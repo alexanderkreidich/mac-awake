@@ -5,6 +5,7 @@ import MacAwakeCore
 private final class IntegrationPMSetClient: PMSetClient {
     var currentValue: Int
     private(set) var setValues: [Int] = []
+    private(set) var sleepNowCount = 0
 
     init(currentValue: Int) {
         self.currentValue = currentValue
@@ -17,6 +18,10 @@ private final class IntegrationPMSetClient: PMSetClient {
     func setDisableSleepValue(_ value: Int) throws {
         setValues.append(value)
         currentValue = value
+    }
+
+    func sleepNow() throws {
+        sleepNowCount += 1
     }
 }
 

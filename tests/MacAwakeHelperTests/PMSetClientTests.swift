@@ -107,6 +107,20 @@ final class PMSetClientTests: XCTestCase {
         )
     }
 
+    func testSleepNowUsesFixedPMSetArguments() throws {
+        let runner = RecordingPMSetProcessRunner(
+            results: [
+                PMSetProcessResult(terminationStatus: 0, standardOutput: "", standardError: ""),
+            ]
+        )
+        let client = SystemPMSetClient(processRunner: runner)
+
+        try client.sleepNow()
+
+        XCTAssertEqual(runner.invocations.map { $0.executableURL.path }, ["/usr/bin/pmset"])
+        XCTAssertEqual(runner.invocations.map { $0.arguments }, [["sleepnow"]])
+    }
+
     func testSetDisableSleepValueRejectsUnsupportedValuesBeforeRunningPMSet() {
         let runner = RecordingPMSetProcessRunner(results: [])
         let client = SystemPMSetClient(processRunner: runner)

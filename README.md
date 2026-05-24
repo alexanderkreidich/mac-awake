@@ -23,7 +23,7 @@ cd mac-awake
 ./scripts/install.sh
 ```
 
-This builds Mac Awake, installs the development helper, and opens the app. It requires Xcode and an administrator password.
+This builds Mac Awake, installs the development helper, configures the app to open at login for your user account, and opens the app. It requires Xcode and an administrator password.
 
 ## Safety
 
