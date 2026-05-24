@@ -111,7 +111,7 @@ public final class HelperSleepControlService: SleepControlService {
         try pmsetClient.setDisableSleepValue(previousValue)
         try store.save(.inactive)
 
-        if requestSleep {
+        if requestSleep, (try? pmsetClient.isLidClosed()) == true {
             try pmsetClient.sleepNow()
         }
     }

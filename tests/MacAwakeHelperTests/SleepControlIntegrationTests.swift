@@ -4,6 +4,7 @@ import MacAwakeCore
 
 private final class IntegrationPMSetClient: PMSetClient {
     var currentValue: Int
+    var lidClosed = false
     private(set) var setValues: [Int] = []
     private(set) var sleepNowCount = 0
 
@@ -18,6 +19,10 @@ private final class IntegrationPMSetClient: PMSetClient {
     func setDisableSleepValue(_ value: Int) throws {
         setValues.append(value)
         currentValue = value
+    }
+
+    func isLidClosed() throws -> Bool {
+        lidClosed
     }
 
     func sleepNow() throws {

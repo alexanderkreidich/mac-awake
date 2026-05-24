@@ -3,6 +3,7 @@ import Foundation
 public protocol PMSetClient {
     func readDisableSleepValue() throws -> Int
     func setDisableSleepValue(_ value: Int) throws
+    func isLidClosed() throws -> Bool
     func sleepNow() throws
 }
 
@@ -65,6 +66,11 @@ public struct SystemPMSetClient: PMSetClient {
         try validate(result: result, arguments: arguments)
     }
 
+    public func isLidClosed() throws -> Bool {
+        let output = try readRootDomainOutput()
+        return parseBooleanRootDomainValue(named: "AppleClamshellState", from: output) ?? false
+    }
+
     public func sleepNow() throws {
         let arguments = ["sleepnow"]
         let result = try processRunner.run(executableURL: executableURL, arguments: arguments)
@@ -81,15 +87,20 @@ public struct SystemPMSetClient: PMSetClient {
     }
 
     private func readRootDomainSleepDisabledValue() throws -> Int {
-        let arguments = ["-r", "-n", "IOPMrootDomain", "-d", "1"]
-        let result = try processRunner.run(executableURL: rootDomainExecutableURL, arguments: arguments)
-        try validate(result: result, arguments: arguments)
+        let output = try readRootDomainOutput()
 
-        guard let value = parseSleepDisabledValue(from: result.standardOutput) else {
+        guard let value = parseSleepDisabledValue(from: output) else {
             throw PMSetClientError.missingDisableSleepValue
         }
 
         return value
+    }
+
+    private func readRootDomainOutput() throws -> String {
+        let arguments = ["-r", "-n", "IOPMrootDomain", "-d", "1"]
+        let result = try processRunner.run(executableURL: rootDomainExecutableURL, arguments: arguments)
+        try validate(result: result, arguments: arguments)
+        return result.standardOutput
     }
 
     private func parseDisableSleepValue(from output: String) throws -> Int? {
@@ -113,17 +124,21 @@ public struct SystemPMSetClient: PMSetClient {
     }
 
     private func parseSleepDisabledValue(from output: String) -> Int? {
+        parseBooleanRootDomainValue(named: "SleepDisabled", from: output).map { $0 ? 1 : 0 }
+    }
+
+    private func parseBooleanRootDomainValue(named key: String, from output: String) -> Bool? {
         for line in output.split(whereSeparator: \.isNewline) {
-            guard line.contains("\"SleepDisabled\"") else {
+            guard line.contains("\"\(key)\"") else {
                 continue
             }
 
             if line.contains("Yes") {
-                return 1
+                return true
             }
 
             if line.contains("No") {
-                return 0
+                return false
             }
         }
 
