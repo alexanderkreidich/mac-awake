@@ -38,6 +38,7 @@
 		130000000000000000000023 /* SleepControlXPCServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000017 /* SleepControlXPCServiceTests.swift */; };
 		130000000000000000000024 /* SleepControlClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000004 /* SleepControlClient.swift */; };
 		130000000000000000000025 /* SleepControlIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000018 /* SleepControlIntegrationTests.swift */; };
+		130000000000000000000026 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000019 /* Assets.xcassets */; };
 		13000000000000000000000C /* libMacAwakeCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110000000000000000000001 /* libMacAwakeCore.a */; };
 		13000000000000000000000D /* libMacAwakeCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110000000000000000000001 /* libMacAwakeCore.a */; };
 		13000000000000000000000E /* libMacAwakeCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110000000000000000000001 /* libMacAwakeCore.a */; };
@@ -106,6 +107,7 @@
 		120000000000000000000016 /* SleepControlXPCService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlXPCService.swift; sourceTree = "<group>"; };
 		120000000000000000000017 /* SleepControlXPCServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlXPCServiceTests.swift; sourceTree = "<group>"; };
 		120000000000000000000018 /* SleepControlIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControlIntegrationTests.swift; sourceTree = "<group>"; };
+		120000000000000000000019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12000000000000000000000C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -189,6 +191,7 @@
 				120000000000000000000006 /* MenuBarController.swift */,
 				120000000000000000000005 /* AwakeTimerStore.swift */,
 				120000000000000000000004 /* SleepControlClient.swift */,
+				120000000000000000000019 /* Assets.xcassets */,
 			);
 			path = ../src/MacAwake;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			buildPhases = (
 				140000000000000000000002 /* Sources */,
 				140000000000000000000003 /* Frameworks */,
+				14000000000000000000000A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -365,6 +369,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14000000000000000000000A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130000000000000000000026 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		140000000000000000000001 /* Sources */ = {
@@ -561,9 +576,11 @@
 		170000000000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mac Awake";
@@ -574,6 +591,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 6.0;
@@ -583,9 +601,11 @@
 		170000000000000000000006 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mac Awake";
@@ -596,6 +616,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sasha.MacAwake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 6.0;
