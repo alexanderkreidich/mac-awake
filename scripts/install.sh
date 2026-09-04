@@ -4,26 +4,43 @@ set -euo pipefail
 LABEL="com.sasha.MacAwakeHelper"
 HELPER_PRODUCT_NAME="MacAwakeHelper"
 PROJECT_RELATIVE_PATH="xcode/MacAwake.xcodeproj"
+REPOSITORY_URL="https://github.com/alexanderkreidich/mac-awake.git"
 SCHEME="MacAwake"
-CONFIGURATION="${CONFIGURATION:-Debug}"
+CONFIGURATION="${CONFIGURATION:-Release}"
+BOOTSTRAP_DIR=""
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -n "${BASH_SOURCE[0]:-}" ]]; then
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+else
+  SCRIPT_DIR="$PWD"
+fi
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 PROJECT_PATH="$REPO_DIR/$PROJECT_RELATIVE_PATH"
+
+if [[ ! -d "$PROJECT_PATH" ]]; then
+  if ! command -v git >/dev/null 2>&1; then
+    echo "error: git not found. Install Xcode Command Line Tools first." >&2
+    exit 1
+  fi
+
+  echo "==> Downloading Mac Awake"
+  BOOTSTRAP_DIR="$(mktemp -d -t mac-awake-install.XXXXXX)"
+  trap 'rm -rf "$BOOTSTRAP_DIR"' EXIT
+  git clone --depth 1 "$REPOSITORY_URL" "$BOOTSTRAP_DIR"
+  REPO_DIR="$BOOTSTRAP_DIR"
+  PROJECT_PATH="$REPO_DIR/$PROJECT_RELATIVE_PATH"
+fi
+
 DERIVED_DATA_PATH="$REPO_DIR/.build/DerivedData"
 HELPER_SOURCE="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/$HELPER_PRODUCT_NAME"
-APP_PATH="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/MacAwake.app"
-APP_EXECUTABLE="$APP_PATH/Contents/MacOS/MacAwake"
+APP_SOURCE="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/MacAwake.app"
+APP_DEST="/Applications/MacAwake.app"
+APP_EXECUTABLE="$APP_DEST/Contents/MacOS/MacAwake"
 HELPER_DEST="/Library/PrivilegedHelperTools/$LABEL"
 PLIST_DEST="/Library/LaunchDaemons/$LABEL.plist"
 STATE_DIR="/Library/Application Support/Mac Awake"
 LOGIN_AGENT_LABEL="com.sasha.MacAwake.LoginAgent"
 LOGIN_AGENT_DEST="$HOME/Library/LaunchAgents/$LOGIN_AGENT_LABEL.plist"
-
-if [[ ! -d "$PROJECT_PATH" ]]; then
-  echo "error: $PROJECT_RELATIVE_PATH not found relative to repository root" >&2
-  exit 1
-fi
 
 if ! command -v xcodebuild >/dev/null 2>&1; then
   echo "error: xcodebuild not found. Install Xcode and select it with xcode-select." >&2
@@ -41,7 +58,7 @@ You may be prompted for your macOS administrator password.
 WARNING
 
 if [[ "${MAC_AWAKE_INSTALL_ASSUME_YES:-}" != "1" ]]; then
-  read -r -p "Continue installing $LABEL? [y/N] " answer
+  read -r -p "Continue installing $LABEL? [y/N] " answer </dev/tty
   case "$answer" in
     y|Y|yes|YES) ;;
     *) echo "cancelled"; exit 0 ;;
@@ -62,8 +79,8 @@ if [[ ! -x "$HELPER_SOURCE" ]]; then
   exit 1
 fi
 
-if [[ ! -x "$APP_EXECUTABLE" ]]; then
-  echo "error: app executable not found at $APP_EXECUTABLE" >&2
+if [[ ! -x "$APP_SOURCE/Contents/MacOS/MacAwake" ]]; then
+  echo "error: app executable not found in $APP_SOURCE" >&2
   exit 1
 fi
 
@@ -79,6 +96,9 @@ cleanup() {
   fi
   if [[ -n "$VERIFY_BINARY" ]]; then
     rm -f "$VERIFY_BINARY"
+  fi
+  if [[ -n "$BOOTSTRAP_DIR" ]]; then
+    rm -rf "$BOOTSTRAP_DIR"
   fi
 }
 trap cleanup EXIT
@@ -165,10 +185,22 @@ else
   exit 1
 fi
 
-echo "==> Installing login agent"
-/bin/mkdir -p "$HOME/Library/LaunchAgents"
+echo "==> Installing application"
 /bin/launchctl bootout "gui/$UID/$LOGIN_AGENT_LABEL" >/dev/null 2>&1 || true
 /bin/launchctl bootout "gui/$UID" "$LOGIN_AGENT_DEST" >/dev/null 2>&1 || true
+/usr/bin/pkill -x MacAwake >/dev/null 2>&1 || true
+sudo /bin/rm -rf "$APP_DEST"
+sudo /usr/bin/ditto "$APP_SOURCE" "$APP_DEST"
+
+if [[ ! -x "$APP_EXECUTABLE" ]]; then
+  echo "error: installed app executable not found at $APP_EXECUTABLE" >&2
+  exit 1
+fi
+
+echo "Application: $APP_DEST"
+
+echo "==> Installing login agent"
+/bin/mkdir -p "$HOME/Library/LaunchAgents"
 /usr/bin/install -m 0644 "$LOGIN_AGENT_TMP" "$LOGIN_AGENT_DEST"
 if /bin/launchctl bootstrap "gui/$UID" "$LOGIN_AGENT_DEST" >/dev/null 2>&1; then
   /bin/launchctl enable "gui/$UID/$LOGIN_AGENT_LABEL" >/dev/null 2>&1 || true
@@ -230,14 +262,8 @@ OBJC
 clang -x objective-c -fobjc-arc "$VERIFY_SOURCE" -framework Foundation -o "$VERIFY_BINARY"
 "$VERIFY_BINARY"
 
-if [[ ! -d "$APP_PATH" ]]; then
-  echo "error: app bundle not found at $APP_PATH" >&2
-  exit 1
-fi
-
-echo "==> Opening Mac Awake.app"
-pkill -x MacAwake >/dev/null 2>&1 || true
-open "$APP_PATH"
+echo "==> Opening installed Mac Awake.app"
+open "$APP_DEST"
 
 for _ in {1..20}; do
   if pgrep -x MacAwake >/dev/null 2>&1; then
